@@ -15,7 +15,7 @@ export const reducer = (state = initialState, action: CounterAction): State => {
       // The following antipattern is not allowed thanks to the Readonly type:
       // state.value += action.payload;
       // return state;
-      return { ...state, value: state.value + action.payload };
+      return { ...state, value: state.value + state.value };
     default:
       return state;
   }

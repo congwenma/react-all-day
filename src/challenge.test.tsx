@@ -39,7 +39,7 @@ test("Challenge 1: Breadcrumb component", () => {
   ).toBe(true);
 });
 
-test.skip("Challenge 2: dispatching redux actions", () => {
+test("Challenge 2: dispatching redux actions", () => {
   /**
    * The App component is set up to display the current count for the counter
    * reducer.
@@ -75,7 +75,7 @@ test.skip("Challenge 2: dispatching redux actions", () => {
   expect(app.contains(<p className="title">{16}</p>)).toBe(true);
 });
 
-test.skip("Challenge 3: AsyncTracker", async () => {
+test("Challenge 3: AsyncTracker", async () => {
   /**
    * This test will have you use the `AsyncTracker` component to watch the
    * progress of an asynchronous action dispatch.
@@ -127,7 +127,7 @@ test.skip("Challenge 3: AsyncTracker", async () => {
   expect(app.contains(<span>Loading...</span>)).toBe(false);
 });
 
-test.skip("Challenge 4: remote API call", async () => {
+test("Challenge 4: remote API call", async () => {
   /**
    * For this test, write an action creator that calls the `getStuff()`
    * function from `Server.ts`. This method returns a promise that
