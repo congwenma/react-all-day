@@ -2,13 +2,17 @@ import * as React from "react";
 import { connect } from "react-redux";
 import "./App.css";
 import AsyncTracker from "./AsyncTracker";
+import { Breadcrumb } from "./Breadcrumb";
 import { actionCreators } from "./redux/actions/counter";
+import { actionCreators as serverfetchActionCreator } from "./redux/actions/server-fetch";
 import { RootState } from "./redux/reducers";
 
 interface ConnectProps {
   counter: number;
+  breadcrumb_values: number[];
   increment(): void;
   delayIncrement(): void;
+  fetchFromServer(): void;
 }
 
 type Props = {} & ConnectProps;
@@ -33,6 +37,12 @@ export class App extends React.PureComponent<Props> {
                 <AsyncTracker
                   pendingContent={<span>Loading...</span>}
                   id="delay-increment"
+                />
+                <AsyncTracker
+                  resolvedContent={
+                    <Breadcrumb values={this.props.breadcrumb_values} />
+                  }
+                  id="fetch-from-server"
                 />
               </div>
             </div>
@@ -62,7 +72,13 @@ export class App extends React.PureComponent<Props> {
               </button>
             </p>
             <p className="control">
-              <button className="button" id="remote-fetch-btn">
+              <button
+                className="button"
+                id="remote-fetch-btn"
+                onClick={() => {
+                  this.props.fetchFromServer();
+                }}
+              >
                 Click to fetch server-side
               </button>
             </p>
@@ -74,12 +90,14 @@ export class App extends React.PureComponent<Props> {
 }
 
 const mapStateToProps = (state: RootState) => ({
-  counter: state.counter.value
+  counter: state.counter.value,
+  breadcrumb_values: state.breadcrumb.value
 });
 
 const mapDispatchToProps = {
   increment: actionCreators.increment,
-  delayIncrement: actionCreators.delayIncrement
+  delayIncrement: actionCreators.delayIncrement,
+  fetchFromServer: serverfetchActionCreator.fetchFromServer
 };
 
 export default connect(

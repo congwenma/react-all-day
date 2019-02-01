@@ -10,6 +10,7 @@ import { AsyncAction } from "./async";
 
 import { RootState } from "../reducers";
 import { CounterAction } from "./counter";
+import { UpdateStoreAction } from "./server-fetch";
 
 /**
  * A generic action type. Prefer using the more specific PayloadAction, Action, or MetaAction interfaces instead.
@@ -44,7 +45,7 @@ export type VoidAction = GenericAction<void, void>;
 export type AnyAction = GenericAction<any, any>;
 
 /** All action types that may be dispatched by the application. */
-export type RootAction = AsyncAction | CounterAction;
+export type RootAction = AsyncAction | CounterAction | UpdateStoreAction;
 
 export type RootDispatch = Dispatch<RootAction>;
 

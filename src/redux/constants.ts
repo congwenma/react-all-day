@@ -20,6 +20,8 @@ export const ASYNC_STARTED = "ASYNC_STARTED";
  */
 export const CLEAN_ASYNC_STATE = "CLEAN_ASYNC_STATE";
 export const INCREMENT = "INCREMENT";
+export const FETCH_FROM_SERVER = "FETCH_FROM_SERVER";
+export const UPDATE_STORE = "UPDATE_STORE";
 /**
  * This is dispatched to indicate that a container is no longer interested in
  * the results of this async call (i.e. it has been unmounted).
