@@ -9,7 +9,7 @@ import { RootState } from "./redux/reducers";
 
 interface ConnectProps {
   counter: number;
-  breadcrumb_values: number[];
+  breadcrumb: number[];
   increment(): void;
   delayIncrement(): void;
   fetchFromServer(): void;
@@ -20,7 +20,7 @@ type Props = {} & ConnectProps;
 export class App extends React.PureComponent<Props> {
   render() {
     return (
-      <>
+      <div>
         <section className="hero is-primary">
           <div className="hero-body">
             <div className="container">
@@ -40,7 +40,7 @@ export class App extends React.PureComponent<Props> {
                 />
                 <AsyncTracker
                   resolvedContent={
-                    <Breadcrumb values={this.props.breadcrumb_values} />
+                    <Breadcrumb values={this.props.breadcrumb} />
                   }
                   id="fetch-from-server"
                 />
@@ -84,14 +84,14 @@ export class App extends React.PureComponent<Props> {
             </p>
           </div>
         </section>
-      </>
+      </div>
     );
   }
 }
 
 const mapStateToProps = (state: RootState) => ({
   counter: state.counter.value,
-  breadcrumb_values: state.breadcrumb.value
+  breadcrumb: state.breadcrumb.value
 });
 
 const mapDispatchToProps = {

@@ -11,7 +11,11 @@ export class Server {
   static getStuff(): Promise<number[]> {
     const delay = randInt(DELAY_MIN, DELAY_MAX);
     const count = randInt(STUFF_MIN, STUFF_MAX);
-    const stuff = new Array<number>(count).map(() => Math.random());
+    const stuff = Array(count)
+      .join(",")
+      .split(",")
+      .map(() => Math.random());
+
     return new Promise(resolve => {
       setTimeout(() => resolve(stuff), delay);
     });

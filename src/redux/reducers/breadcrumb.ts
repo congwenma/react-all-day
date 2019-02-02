@@ -18,7 +18,7 @@ export const reducer = (
       // The following antipattern is not allowed thanks to the Readonly type:
       // state.value += action.payload;
       // return state;
-      console.log("action payload");
+      console.log("action payload", JSON.stringify(state), action.payload);
       return { ...state, value: action.payload };
     default:
       return state;

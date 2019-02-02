@@ -1,5 +1,5 @@
 import * as Bluebird from "bluebird";
-import { configure, mount } from "enzyme";
+import { configure, mount, shallow } from "enzyme";
 import * as Adapter from "enzyme-adapter-react-16";
 import * as React from "react";
 import { Provider } from "react-redux";
@@ -7,6 +7,7 @@ import App from "./App";
 import { Breadcrumb } from "./Breadcrumb";
 import { configureStore } from "./redux";
 import { DELAY_MAX } from "./Server";
+import Server from "./Server";
 
 configure({ adapter: new Adapter() });
 
@@ -167,8 +168,15 @@ test("Challenge 4: remote API call", async () => {
   button.simulate("click");
   await Bluebird.delay(DELAY_MAX);
   app.update();
+  debugger;
+  const newBreadcrumbValues = app.instance().state.storeState.breadcrumb.value;
 
-  expect(app.contains(<li />)).toBe(true);
+  console.log(app.html());
+  newBreadcrumbValues.forEach((value: number) => {
+    expect(
+      app.contains(<li> {(Math.floor(value * 1000) / 1000).toFixed(3)}</li>)
+    ).toBe(true);
+  });
 });
 
 test.skip("Challenge 5: simulating failure", () => {
